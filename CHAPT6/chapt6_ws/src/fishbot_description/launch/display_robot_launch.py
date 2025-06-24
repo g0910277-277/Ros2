@@ -14,25 +14,25 @@ def generate_launch_description():
     
     # declare parameter
     action_declare_arg_mode_path = launch.actions.DeclareLaunchArgument(
-        name = 'model', default_value=str(default_urdf_path), description='param'
+        name = 'model', default_value=str(default_urdf_path), description='substitute param'
     )
     
     action_declare_arg_mode_xacro_path = launch.actions.DeclareLaunchArgument(
         name = 'model_xacro', default_value=str(default_xacro_path), description='param'
     )
     
-
+    """
     substitution_command_result = launch.substitutions.Command(['cat ', launch.substitutions.LaunchConfiguration('model')])    
     robot_description_value = launch_ros.parameter_descriptions.ParameterValue(
         substitution_command_result, value_type=str
     )
+
     """
-    xacro has some problem
-    substitution_command_result_xacro = launch.substitutions.Command(['xacro ', launch.substitutions.LaunchConfiguration('model_xacro')])
+    substitution_command_result_xacro = launch.substitutions.Command(['xacro ', launch.substitutions.LaunchConfiguration('model')])
     robot_description_value = launch_ros.parameter_descriptions.ParameterValue(
         substitution_command_result_xacro, value_type=str
     )
-    """
+
     action_robot_state_publisher = launch_ros.actions.Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',

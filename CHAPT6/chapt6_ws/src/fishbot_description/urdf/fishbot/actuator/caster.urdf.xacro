@@ -1,31 +1,31 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:macro name="camera_xacro" params="xyz">
-        <link name="camera_link">
+    <xacro:macro name="caster_xacro" params="caster_name xyz">
+        <link name="${caster_name}_link">
             <visual>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <box size="0.02 0.10 0.02"/>
+                    <sphere radius="0.016"/>
                 </geometry>
-                <material name="black">
-                    <color rgba="0.0 0.0 0.0 0.5"/>
+                <material name="yellow">
+                    <color rgba="1.0 1.0 0.0 0.8"/>
                 </material>
             </visual>
             <collision>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <box size="0.02 0.10 0.02"/>
+                    <sphere radius="0.016"/>
                 </geometry>
-                <material name="black">
-                    <color rgba="0.0 0.0 0.0 0.5"/>
+                <material name="yellow">
+                    <color rgba="1.0 1.0 0.0 0.8"/>
                 </material>                
             </collision>
         </link>
 
-        <joint name="camera_joint" type="fixed">
+        <joint name="${caster_name}_joint" type="fixed">
             <origin xyz="${xyz}" rpy="0.0 0.0 0.0"/>
             <parent link="base_link"/>
-            <child link="camera_link"/>
+            <child link="${caster_name}_link"/>
         </joint>
     </xacro:macro>
 </robot>

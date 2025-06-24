@@ -11,7 +11,7 @@ def generate_launch_description():
     urdf_package_path = get_package_share_directory('fishbot_description')
     
     # 默认路径
-    default_xacro_path = os.path.join(urdf_package_path, 'urdf', 'first_robot.xacro')
+    default_xacro_path = os.path.join(urdf_package_path, 'urdf', 'fishbot', 'fishrot.urdf.xacro')
     # default_rviz_config_path = os.path.join(urdf_package_path, 'config', 'display_robot_model.rviz')
     default_gazebo_world_path = os.path.join(urdf_package_path, 'world', 'room_world.world')
     

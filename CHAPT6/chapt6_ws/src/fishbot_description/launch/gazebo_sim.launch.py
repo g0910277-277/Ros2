@@ -11,13 +11,13 @@ def generate_launch_description():
     urdf_package_path = get_package_share_directory('fishbot_description')
     
     # 默认路径
-    default_xacro_path = os.path.join(urdf_package_path, 'urdf', 'fishbot', 'fishrot.urdf.xacro')
+    default_xacro_path = os.path.join(urdf_package_path, 'urdf', 'fishbot/fishrot.urdf.xacro')
     # default_rviz_config_path = os.path.join(urdf_package_path, 'config', 'display_robot_model.rviz')
     default_gazebo_world_path = os.path.join(urdf_package_path, 'world', 'room_world.world')
     
     # 声明model参数，可在外部传入
     action_declare_arg_mode_xacro_path = launch.actions.DeclareLaunchArgument(
-        name = 'model', default_value=str(default_xacro_path), description='param'
+        name = 'model', default_value=str(default_xacro_path), description='加载的模型文件路径'
     )
     
     # xacro -> urdf
@@ -38,6 +38,13 @@ def generate_launch_description():
             [get_package_share_directory('gazebo_ros'), '/launch/', 'gazebo.launch.py']
         ),
         launch_arguments=[('world', default_gazebo_world_path), ('verbose', 'true')]
+    )
+    
+    # robot_description 是action_robot_state_publisher发布的
+    action_spawn_entity = launch_ros.actions.Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        parameters=[{'-topic', '/robot_description', '-entity', 'fishbot'}],
     )
     
     return launch.LaunchDescription([

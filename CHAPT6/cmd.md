@@ -78,6 +78,17 @@ sudo apt install ros-$ROS_DISTRO-gazebo-ros-pkgs
 
 xacro->urdf->sdf
 
+spawn_entity.py
+
+#### 订阅robot_description发布的urdf并且用来在gazebo中实体化名为-entity的机器人
+action_spawn_entity = launch_ros.actions.Node(
+    package='gazebo_ros',
+    executable='spawn_entity.py',
+    parameters=[{'-topic', '/robot_description', '-entity', 'fishbot'}],
+)
+
+加载不出机器人不知道是不是要换22
+
 ### 6.4.3 使用Gazebo标签扩展URDF
 
 ### 6.4.4 使用两轮差速插件控制机器人

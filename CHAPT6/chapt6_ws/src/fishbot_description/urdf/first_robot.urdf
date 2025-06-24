@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot name="first_robot">
+    <!-- robot main-->
+    <link name="base_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <!-- geometry outlook-->
+            <geometry>
+                <cylinder radius="0.10" length="0.12"/>
+            </geometry>
+            <!-- material and color-->
+            <material name="white">
+                <color rgba="1.0 1.0 1.0 0.5"/>
+            </material>
+        </visual>
+    </link>
+
+    <!-- IMU-->
+    <link name="imu_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <!-- geometry outlook-->
+            <geometry>
+                <box size="0.02 0.02 0.02"/>
+            </geometry>
+            <!-- material and color-->
+            <material name="black">
+                <color rgba="0.0 0.0 0.0 0.5"/>
+            </material>
+        </visual>
+    </link>
+    <!--Robot joints-->
+    <joint name="imu_joint" type="fixed">
+        <origin xyz="0.0 0.0 0.03" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+    </joint>
+</robot>
